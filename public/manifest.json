@@ -1,0 +1,16 @@
+{
+  "short_name": "Intellicharter",
+  "name": "Intellicharter",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "144x144 64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#0000fc",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
+}

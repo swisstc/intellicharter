@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+}
+
+.map-class {
+  position: relative;
+  flex: 1;
+}
+
+.camera-pane {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-buttons-holder {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  padding: 25px;
+}
+
+.button {
+  background-color: #E40A5D;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  outline: none;
+}
+
+.camera-button-holder .button {
+  margin: 0 10px;
+}
+
+video {
+  flex: 1;
+}
+
+.button i {
+  font-size: 30px;
+  color: #FFF;
+}
+
+.upload {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  opacity: 0.7;
+  padding: 10px;
+  z-index: 9999;
+  border-radius: 5px;
+}
+
+.modal-container {
+  position: relative;
+  flex: 1;
+  background-color: #FFF;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.modal-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.modal-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-container .button {
+  position: absolute;
+  right: 3px;
+  top: 5px;
+  background-color: #FFF;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-top-right-radius: 0;
+}
+
+.modal-container .button i {
+  color: #000;
+}
+
+.location-marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: -5px;
+  top: -5px;
+  border-radius: 50%;
+  background-color: #369;
+  border: 1px solid #FFF;
+}
+
+.cluster-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: no-repeat center/200% url(/images/gifire.gif);
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  /*-webkit-text-stroke: 0.5px #FFF;*/
+}
+
+.user-marker {
+  display: flex;
+  border: 1px solid #000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+}

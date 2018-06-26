@@ -1,0 +1,26 @@
+{
+  "name": "intellicharter-react-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "google-map-react": "^0.34.0",
+    "ionicons": "^3.0.0",
+    "points-cluster": "^0.1.4",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-lottie": "^1.1.0",
+    "react-mfb": "^0.6.0",
+    "react-scripts": "1.1.4",
+    "recompose": "^0.27.1",
+    "uuid": "^3.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "firebase": "^4.13.1"
+  }
+}
