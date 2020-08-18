@@ -1,0 +1,12 @@
+url = require("socket.url")
+
+local AV_DEV = 5
+local LS_SID = "urn:micasaverde-com:serviceId:Sonos1"
+local MN_SID = "urn:micasaverde-com:serviceId:MediaNavigation1"
+
+local TEMP_SID = "urn:upnp-org:serviceId:TemperatureSensor1"
+local officeTemp = luup.variable_get(TEMP_SID,"CurrentTemperature", 42)
+local lang = "en"
+local speak = url.escape(string.format("The office is currently at %s degrees", officeTemp))
+
+luup.call_action(LS_SID, "SetURIToPlay", {URIToPlay = s

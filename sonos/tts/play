@@ -1,0 +1,9 @@
+url = require("socket.url")
+
+local AV_DEV = 253
+local LS_SID = "urn:micasaverde-com:serviceId:Sonos1"
+
+local OutTemp = luup.variable_get("urn:upnp-org:serviceId:TemperatureSensor1","CurrentTemperature", 232)
+local currentCondition = luup.variable_get("urn:upnp-micasaverde-com:serviceId:Weather1", "Condition", 115)
+
+luup.call_action(LS_SID, "Say", {Text = string.format("The outdoor condition is %s, and the temperature is currently at %s degrees", currentCondition, OutTemp) ,Volume=23}, AV_DEV)
