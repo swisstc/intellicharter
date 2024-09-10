@@ -117,7 +117,7 @@ video {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  background: no-repeat center/200% url(/images/gifire.gif);
+  background: no-repeat center/200% url(/public/images/gifire.gif);
   width: 30px;
   height: 30px;
   font-weight: bold;

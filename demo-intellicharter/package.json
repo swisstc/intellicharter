@@ -1,18 +1,18 @@
 {
   "name": "intellicharter-react-pwa",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
-    "google-map-react": "^0.34.0",
+    "google-map-react": "2.2.1",
     "ionicons": "^3.0.0",
     "points-cluster": "^0.1.4",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-lottie": "^1.1.0",
-    "react-mfb": "^0.6.0",
-    "react-scripts": "1.1.4",
-    "recompose": "^0.27.1",
-    "uuid": "^3.2.1"
+    "react-scripts": "^5.0.1",
+    "recompose": "^0.33.0",
+    "uuid": "^3.2.1",
+    "vue-cli": "^2.9.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,6 +21,21 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "firebase": "^4.13.1"
+    "firebase": "^10.13.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "overrides": {
+    "autoprefixer": "10.4.5"
   }
 }

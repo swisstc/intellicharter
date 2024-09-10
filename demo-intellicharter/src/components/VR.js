@@ -41,7 +41,7 @@ class VR extends Component {
 							({state, actions}) => {
 								state.nearbyWidgets.map(widget => {
 									console.log(widget);
-									return <img id={widget.key} src={widget.imageURL}/>;
+									return <img id={widget.key} alt="" src={widget.imageURL}/>;
 								});
 							}
 						}

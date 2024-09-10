@@ -4,7 +4,7 @@ import {
 	defaultProps,
 	withState,
 	withHandlers,
-	withPropsOnChange
+	withProps
 } from 'recompose';
 import supercluster from 'points-cluster';
 import GoogleMapReact from 'google-map-react';
@@ -12,20 +12,27 @@ import UserMarker from './UserMarker';
 import LocationMarker from './LocationMarker';
 import LocationCluster from './LocationCluster';
 import { AppConsumer } from '../context/app-context';
-import firebase from 'firebase';
+// . import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 require('firebase/firestore');
 
 const config = {
-  apiKey: "AIzaSyASR-XNWqIpTKzcIxYfj7JnCzmm2Hxrqpw",
-  authDomain: "intellicharter.firebaseapp.com",
-  databaseURL: "https://intellicharter.firebaseio.com",
-  projectId: "intellicharter",
-  storageBucket: "intellicharter.appspot.com",
-  messagingSenderId: "1004965395503"
+	apiKey: "AIzaSyC2FpbJZ76KM5QZqrGJx6D9mN4ImjhVF2U",
+	authDomain: "intellicharter-300216.firebaseapp.com",
+	projectId: "intellicharter-300216",
+	storageBucket: "intellicharter-300216.appspot.com",
+	messagingSenderId: "924772209237",
+	appId: "1:924772209237:web:20f382c374eeb80c0ebadc",
+	measurementId: "G-CV6MFL7CGG"
 };
 
 if (!firebase) {
 	firebase.initializeApp(config);
+	// const analytics = analytics = getAnalytics(app);
 }
 
 firebase.firestore().settings({timestampsInSnapshots: true});
@@ -38,7 +45,7 @@ const composedMap = ({
 		{ ({state, actions}) => (
 			<div className="map-class" style={{ display: state.mapVisible ? 'flex' : 'none' }}>
 			  <GoogleMapReact
-			    bootstrapURLKeys={{ key: ['AIzaSyDraKt4nZ1IQWg7w6haocX-IpFiHTp2w2Y'] }}
+			    bootstrapURLKeys={{ key: ['AIzaSyC2FpbJZ76KM5QZqrGJx6D9mN4ImjhVF2U'] }}
 			    onChange={onChange}
 			    gestureHandling="greedy"
 			    center={center}
@@ -53,10 +60,10 @@ const composedMap = ({
 			    yesIWantToUseGoogleMapApiInternals={true}>
 		    	{ state.currentLocation.lat ? (
 		    		<UserMarker lat={state.currentLocation.lat} lng={state.currentLocation.lng}></UserMarker>
-		    		) 
+		    		)
 		    		: null
 		    	}
-			    { clusters.map(({ ...markerProps, id, numPoints }) => (
+			    { clusters.map(({ markerProps, id, numPoints }) => (
 			    	numPoints === 1 ?
 			      	<LocationMarker	key={id} {...markerProps} actions={actions}></LocationMarker>
 			      	: <LocationCluster key={id} {...markerProps} actions={actions}></LocationCluster>
@@ -76,7 +83,7 @@ const composedMapHOC = compose(
 		}
 	}),
 	withState(
-		'markers', 
+		'markers',
 		'setMarkers',
 		[]
 	),
@@ -109,15 +116,15 @@ const composedMapHOC = compose(
 					setMarkers(locations);
 				})
 				.catch(err => console.log(err))
-			// locationsRef.get((snapShot) => {
-			// 	console.log(snapShot)
-			// 	snapShot.docChanges.forEach(item => {
-			// 		console.log(item);
-			// 	});
-			// })
+			locationsRef.get((snapShot) => {
+			 	console.log(snapShot)
+			 	snapShot.docChanges.forEach(item => {
+			 		console.log(item);
+			 	});
+			 })
 		}
 	}),
-  withPropsOnChange(
+  withProps(
     ['markers'],
     ({ markers = [], clusterRadius, options: { minZoom, maxZoom } }) => ({
       getCluster: supercluster(
@@ -131,7 +138,7 @@ const composedMapHOC = compose(
     })
   ),
   // get clusters specific for current bounds and zoom
-  withPropsOnChange(
+  withProps(
     ['mapProps', 'getCluster'],
     ({ mapProps, getCluster }) => ({
       clusters: mapProps.bounds

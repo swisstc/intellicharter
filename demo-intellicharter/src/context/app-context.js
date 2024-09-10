@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 require('firebase/firestore');
+//import firebase from 'firebase';
+//require('firebase/firestore');
 // const uuid = require('uuid/v4');
 
 const config = {
-  apiKey: "AIzaSyASR-XNWqIpTKzcIxYfj7JnCzmm2Hxrqpw",
-  authDomain: "intellicharter.firebaseapp.com",
-  databaseURL: "https://intellicharter.firebaseio.com",
-  projectId: "intellicharter",
-  storageBucket: "intellicharter.appspot.com",
-  messagingSenderId: "1004965395503"
+  apiKey: "AIzaSyC2FpbJZ76KM5QZqrGJx6D9mN4ImjhVF2U",
+  authDomain: "intellicharter-300216.firebaseapp.com",
+  projectId: "intellicharter-300216",
+  storageBucket: "intellicharter-300216.appspot.com",
+  messagingSenderId: "924772209237",
+  appId: "1:924772209237:web:335e2c5aa096170f0ebadc",
+  measurementId: "G-GTSF3RY49D"
 };
 
 firebase.initializeApp(config);
@@ -29,9 +34,10 @@ export class AppProvider extends Component {
 			menuVisible: true,
 			menuPosition: 'br',
 			currentLocation: {
-    		lat: 0,
-    		lng: 0
+	   			lat: 0,
+    			lng: 0
 			},
+
 			widgets: [],
 			progressMessage: null,
 			activeLocation: null
@@ -42,7 +48,6 @@ export class AppProvider extends Component {
 		this.toggleModal = this.toggleModal.bind(this);
 
 		this.initFirebase();
-
 	}
 
 	initFirebase () {
@@ -59,13 +64,16 @@ export class AppProvider extends Component {
 				this.setState({
 					uid: user.uid
 				});
+
+				console.log('Signed in to Firebase');
 			}
 		});
 
+		console.log('Doing some location stuff');
 		const locationsRef = firebase.firestore().collection('locations');
 
 		locationsRef.onSnapshot((snapShot) => {
-			snapShot.docChanges.forEach(item => {
+			snapShot.docChanges().forEach(item => {
 				if (item.type === 'added') {
 					this.setState((prevState, props) => ({ 
 						widgets: [
@@ -96,7 +104,7 @@ export class AppProvider extends Component {
 				let newCoords = new this.maps.LatLng(location.coords.latitude,location.coords.longitude);
 				this.map.panTo(newCoords);
 				this.map.setZoom(19);
-			}, 
+			},
 			(err) => console.log(err), { maximumAge: 0 });
 	}
 
